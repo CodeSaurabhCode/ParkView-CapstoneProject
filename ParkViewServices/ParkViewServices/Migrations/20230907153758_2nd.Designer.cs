@@ -12,8 +12,8 @@ using ParkViewServices.Data;
 namespace ParkViewServices.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230906101108_AppUserModifiedAgain")]
-    partial class AppUserModifiedAgain
+    [Migration("20230907153758_2nd")]
+    partial class _2nd
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -280,8 +280,8 @@ namespace ParkViewServices.Migrations
                     b.Property<int>("NumberOfRooms")
                         .HasColumnType("int");
 
-                    b.Property<string>("PaymentStatus")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<bool?>("PaymentStatus")
+                        .HasColumnType("bit");
 
                     b.Property<string>("PromoCode")
                         .HasColumnType("nvarchar(max)");
@@ -409,6 +409,90 @@ namespace ParkViewServices.Migrations
                             Id = 10,
                             CountryId = 4,
                             Name = "Shanghai"
+                        });
+                });
+
+            modelBuilder.Entity("ParkViewServices.Models.Hotels.CityImage", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("CityId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ImagePath")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CityId");
+
+                    b.ToTable("CityImage");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CityId = 1,
+                            ImagePath = "~/images/new_delhi.jpg"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CityId = 2,
+                            ImagePath = "~/images/mumbai.jpg"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CityId = 3,
+                            ImagePath = "~/images/male.jpg"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            CityId = 4,
+                            ImagePath = "~/images/bangkok.jpg"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            CityId = 5,
+                            ImagePath = "~/images/beijing.jpg"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            CityId = 6,
+                            ImagePath = "~/images/chennai.jpg"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            CityId = 7,
+                            ImagePath = "~/images/kolkata.jpg"
+                        },
+                        new
+                        {
+                            Id = 8,
+                            CityId = 8,
+                            ImagePath = "~/images/colombo.jpg"
+                        },
+                        new
+                        {
+                            Id = 9,
+                            CityId = 9,
+                            ImagePath = "~/images/phuket.jpg"
+                        },
+                        new
+                        {
+                            Id = 10,
+                            CityId = 10,
+                            ImagePath = "~/images/shanghai.jpg"
                         });
                 });
 
@@ -844,6 +928,108 @@ namespace ParkViewServices.Migrations
                             Caption = "Restaurant",
                             HotelId = 13,
                             ImagePath = "~/Images/Hotel132.jpeg"
+                        });
+                });
+
+            modelBuilder.Entity("ParkViewServices.Models.Hotels.HotelSingleImage", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("HotelId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ImagePath")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("HotelId");
+
+                    b.ToTable("HotelSingleImage");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            HotelId = 1,
+                            ImagePath = "~/images/1.jpg"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            HotelId = 2,
+                            ImagePath = "~/images/2.jpg"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            HotelId = 3,
+                            ImagePath = "~/images/3.jpg"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            HotelId = 4,
+                            ImagePath = "~/images/4.jpg"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            HotelId = 5,
+                            ImagePath = "~/images/5.jpg"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            HotelId = 6,
+                            ImagePath = "~/images/6.jpg"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            HotelId = 7,
+                            ImagePath = "~/images/7.jpg"
+                        },
+                        new
+                        {
+                            Id = 8,
+                            HotelId = 8,
+                            ImagePath = "~/images/8.jpg"
+                        },
+                        new
+                        {
+                            Id = 9,
+                            HotelId = 9,
+                            ImagePath = "~/images/9.jpg"
+                        },
+                        new
+                        {
+                            Id = 10,
+                            HotelId = 10,
+                            ImagePath = "~/images/10.jpg"
+                        },
+                        new
+                        {
+                            Id = 11,
+                            HotelId = 11,
+                            ImagePath = "~/images/11.jpg"
+                        },
+                        new
+                        {
+                            Id = 12,
+                            HotelId = 12,
+                            ImagePath = "~/images/12.jpg"
+                        },
+                        new
+                        {
+                            Id = 13,
+                            HotelId = 13,
+                            ImagePath = "~/images/13.jpg"
                         });
                 });
 
@@ -1875,7 +2061,6 @@ namespace ParkViewServices.Migrations
                     b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser");
 
                     b.Property<string>("City")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
@@ -1883,15 +2068,12 @@ namespace ParkViewServices.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PostalCode")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("State")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("StreetAddress")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasDiscriminator().HasValue("ApplicationUser");
@@ -1979,6 +2161,17 @@ namespace ParkViewServices.Migrations
                     b.Navigation("Country");
                 });
 
+            modelBuilder.Entity("ParkViewServices.Models.Hotels.CityImage", b =>
+                {
+                    b.HasOne("ParkViewServices.Models.Hotels.City", "City")
+                        .WithMany()
+                        .HasForeignKey("CityId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("City");
+                });
+
             modelBuilder.Entity("ParkViewServices.Models.Hotels.Hotel", b =>
                 {
                     b.HasOne("ParkViewServices.Models.Hotels.City", "City")
@@ -1991,6 +2184,17 @@ namespace ParkViewServices.Migrations
                 });
 
             modelBuilder.Entity("ParkViewServices.Models.Hotels.HotelImages", b =>
+                {
+                    b.HasOne("ParkViewServices.Models.Hotels.Hotel", "Hotel")
+                        .WithMany()
+                        .HasForeignKey("HotelId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Hotel");
+                });
+
+            modelBuilder.Entity("ParkViewServices.Models.Hotels.HotelSingleImage", b =>
                 {
                     b.HasOne("ParkViewServices.Models.Hotels.Hotel", "Hotel")
                         .WithMany()
