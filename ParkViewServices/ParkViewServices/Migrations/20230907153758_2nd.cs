@@ -4,7 +4,7 @@
 
 namespace ParkViewServices.Migrations
 {
-    public partial class remigrations1 : Migration
+    public partial class _2nd : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
