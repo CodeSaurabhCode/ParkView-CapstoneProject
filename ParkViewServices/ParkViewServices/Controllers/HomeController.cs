@@ -40,6 +40,11 @@ namespace ParkViewServices.Controllers
             return View(cityHotels);
         }
 
+        public IActionResult Destinations()
+        {
+            return View();
+        }
+
         public IActionResult Privacy(int id)
         {
             var hotel = _unitOfWork.Hotel.Get(u => u.Id == id, includeProperties: "City");

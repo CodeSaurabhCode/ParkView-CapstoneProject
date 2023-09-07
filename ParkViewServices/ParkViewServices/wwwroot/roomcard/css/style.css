@@ -101,11 +101,11 @@
 
 /*** Header ***/
 .carousel-caption {
-    top: 0;
+    /*top: 0;*/
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(15, 23, 43, .7);
+    /*background: rgba(15, 23, 43, .7);*/
     z-index: 1;
 }
 

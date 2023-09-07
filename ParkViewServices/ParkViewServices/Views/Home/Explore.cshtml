@@ -83,7 +83,7 @@
 
 <partial name="_explorepageslider"  />
 
-<div class="detailsgrid">
+@*<div class="detailsgrid">
     
     <div class="row">
         <div class="col">
@@ -98,7 +98,7 @@
         <div class="col">
             From bustling cities to remote beaches — and just about everything in between — discover how The Ritz-Carlton inspires life’s most meaningful journeys in destinations around the world.
         </div>
-    </div>
+    </div>*@
 
     <style>
         /*map css*/
@@ -133,49 +133,10 @@
     </style>
 
 
-    <div class="ourCollection">
-        Our Collection
-    </div>
-    <div class="mapcontainer">
-        <div class="d-flex align-items-center">
-            <img src="~/images/hotelmap.jpg" class="mx-auto" usemap="#workmap">
 
 
-            <map name="workmap">
 
-                <area alt="Delhi" target="" title="Delhi" class="one" asp-controller="Booking" asp-action="Index" asp-route-id="1" coords="344,354,20" shape="circle">
-                <area alt="Mumbai" target="" title="Mumbai" class="one" href="#" coords="273,409,20" shape="circle">
-                <area alt="Male" target="" title="Male" class="one" href="#" coords="285,565,20" shape="circle">
-                <area alt="Bangkok" target="" title="Bangkok" class="one" href="#" coords="577,463,20" shape="circle">
-                <area alt="Beijing" target="" title="Beijing" class="one" href="#" coords="692,116,20" shape="circle">
-                <area alt="Chennai" target="" title="Chennai" class="one" href="#" coords="361,471,20" shape="circle">
-                <area alt="Kolkata" target="" title="Kolkata" class="one" href="#" coords="416,364,20" shape="circle">
-                <area alt="Shanghai" target="" title="Shanghai" class="one" href="#" coords="769,250,20" shape="circle">
-                <area alt="Colombo" target="" title="Colombo" class="one" href="#" coords="363,551,20" shape="circle">
-                <area alt="Phuket" target="" title="Phuket" class="one" href="#" coords="563,514,20" shape="circle">
 
-            </map>
-        </div>
-
-    </div>
-
-</div>
-
-<ul class="tab-group-tabs container">
-    <li class="tab-group-tab active">
-        <a href="#" class="tab-group-button">
-            <div class="title">India</div>
-        </a>
-
-    </li>
-
-    <li class="tab-group-tab">
-        <a href="#" class="tab-group-button">
-            <div class="title">Others</div>
-        </a>
-
-    </li>
-</ul>
 
 
 <style>
@@ -202,15 +163,19 @@
       }
     }*/
 
-
+    .text-primary1 {
+        color: #FEA116;
+        !important;
+    }
 
 </style>
-<div class="hotel-heading">
-    Our hotels
+
+<div class="text-center wow fadeInUp" style="padding-top:50px;" data-wow-delay="0.1s">
+    <h6 class="section-title text-center text-primary1 text-uppercase" >Our Rooms</h6>
+    <h1 class="mb-5">Explore Our <span class="text-primary1 text-uppercase">Hotels</span></h1>
 </div>
 
-
-<div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+<div id="carouselExampleControls" class="carousel slide"  style="padding-bottom:50px;" data-bs-ride="carousel">
     <div class="carousel-inner">
         <div class="carousel-item active">
                 
@@ -285,8 +250,8 @@
                         .card-img-overlay {
                             position: absolute;
                             /*bottom: 60px;
-                                top:100px;
-                                margin-top: 400px;*/
+                                                        top:100px;
+                                                        margin-top: 400px;*/
                             padding-left: 50px;
                             padding-top: 500px;
                         }
@@ -348,8 +313,8 @@
                         .card-img-overlay {
                             position: absolute;
                             /*bottom: 60px;
-                                                        top:100px;
-                                                        margin-top: 400px;*/
+                                                                                top:100px;
+                                                                                margin-top: 400px;*/
                             padding-left: 50px;
                             padding-top: 500px;
                         }
