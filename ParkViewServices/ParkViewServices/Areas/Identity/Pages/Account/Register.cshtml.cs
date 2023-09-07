@@ -91,10 +91,11 @@ namespace ParkViewServices.Areas.Identity.Pages.Account
             ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
             ///     directly from your code. This API may change or be removed in future releases.
             /// </summary>
-            [Required]
-            [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
+            [Required(ErrorMessage = "The Password field is required.")]
+            [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at most {1} characters long.", MinimumLength = 6)]
             [DataType(DataType.Password)]
             [Display(Name = "Password")]
+            [RegularExpression(@"^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{6,}$", ErrorMessage = "The {0} must contain at least one letter, one number, and one special character.")]
             public string Password { get; set; }
 
             /// <summary>
@@ -107,11 +108,18 @@ namespace ParkViewServices.Areas.Identity.Pages.Account
             public string ConfirmPassword { get; set; }
 
             [Required]
+            [StringLength(50, MinimumLength = 3, ErrorMessage = "Name must be between 3 and 50 characters")]
+            [RegularExpression(@"^[a-zA-Z\s]*$", ErrorMessage = "Name can only contain letters and spaces")]
             public string Name { get; set; }
             public string? StreetAddress { get; set; }
             public string? City { get; set; }
+            
             public string? State { get; set; }
+            [DataType(DataType.PostalCode)]
             public string? PostalCode { get; set; }
+
+            [DataType(DataType.PhoneNumber)]
+            [RegularExpression(@"^\d{10}$", ErrorMessage = "Please enter a valid 10-digit phone number.")]
             public string? PhoneNumber { get; set; }
             
         }

@@ -4,7 +4,8 @@
     using System.ComponentModel.DataAnnotations;
     using Microsoft.AspNetCore.Mvc.ModelBinding;
     using Microsoft.AspNetCore.Mvc.Rendering;
-    using ParkViewServices.Models.Hotels;
+	using ParkViewServices.Helpers;
+	using ParkViewServices.Models.Hotels;
 
     public class BookingViewModel
     {
@@ -12,15 +13,16 @@
         [Display(Name = "Select Hotel")]
         public int HotelId { get; set; } = 1;
 
-        [Required(ErrorMessage = "Please select the check-in date.")]
-        [DataType(DataType.Date)]
-        [Display(Name = "Check-In Date")]
-        public DateTime CheckInDate { get; set; } = DateTime.Now;
+		[Required(ErrorMessage = "Please select the check-in date.")]
+		[DataType(DataType.Date)]
+		[Display(Name = "Check-In Date")]
+		[CheckInDateValidation(ErrorMessage = "Check-In Date must be between today and 3 months from today.")]
+		public DateTime CheckInDate { get; set; } = DateTime.Now;
 
-        [Required(ErrorMessage = "Please select the check-out date.")]
-        [DataType(DataType.Date)]
-        [Display(Name = "Check-Out Date")]
-        public DateTime CheckOutDate { get; set; } = DateTime.Now.AddDays(1);
+		[Required(ErrorMessage = "Check-out date is required.")]
+		[DataType(DataType.Date)]
+		[DateGreaterThan(ErrorMessage = "CheckOut Date must be at least one day after CheckIn Date.")]
+		public DateTime CheckOutDate { get; set; } = DateTime.Now.AddDays(1);
 
         [Range(1, int.MaxValue, ErrorMessage = "Please select the number of rooms.")]
         [Display(Name = "Number of Rooms")]

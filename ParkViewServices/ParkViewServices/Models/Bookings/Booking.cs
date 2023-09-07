@@ -16,7 +16,7 @@ namespace ParkViewServices.Models.Bookings
 
         [Required(ErrorMessage = "Check-out date is required.")]
         [DataType(DataType.Date)]
-        [DateGreaterThan("CheckInDate", ErrorMessage = "Check-out date must be greater than check-in date.")]
+		[DateGreaterThan(ErrorMessage = "Check-Out Date must be at least one day after Check-In Date.")]
         public DateTime CheckOutDate { get; set; }
 
         [Required(ErrorMessage = "Number of adults is required.")]

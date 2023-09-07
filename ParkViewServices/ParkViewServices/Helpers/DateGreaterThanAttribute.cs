@@ -1,38 +1,22 @@
 ﻿namespace ParkViewServices.Helpers
 {
-    using System;
-    using System.ComponentModel.DataAnnotations;
+	using System;
+	using System.ComponentModel.DataAnnotations;
 
-    public class DateGreaterThanAttribute : ValidationAttribute
-    {
-        private readonly string _otherPropertyName;
+	public class DateGreaterThanAttribute : ValidationAttribute
+	{
+		protected override ValidationResult IsValid(object value, ValidationContext validationContext)
+		{
+			var checkInDate = (DateTime)validationContext.ObjectType.GetProperty("CheckInDate").GetValue(validationContext.ObjectInstance, null);
+			var checkOutDate = (DateTime)value;
 
-        public DateGreaterThanAttribute(string otherPropertyName)
-        {
-            _otherPropertyName = otherPropertyName;
-        }
+			if (checkOutDate <= checkInDate.AddHours(12))
+			{
+				return new ValidationResult(ErrorMessage);
+			}
 
-        protected override ValidationResult IsValid(object value, ValidationContext validationContext)
-        {
-            var otherPropertyInfo = validationContext.ObjectType.GetProperty(_otherPropertyName);
+			return ValidationResult.Success;
+		}
 
-            if (otherPropertyInfo == null)
-            {
-                return new ValidationResult($"Property with name {_otherPropertyName} not found.");
-            }
-
-            var otherPropertyValue = otherPropertyInfo.GetValue(validationContext.ObjectInstance, null);
-
-            if (value is DateTime dateValue && otherPropertyValue is DateTime otherDateValue)
-            {
-                if (dateValue > otherDateValue)
-                {
-                    return ValidationResult.Success;
-                }
-            }
-
-            return new ValidationResult($"{validationContext.DisplayName} must be greater than {_otherPropertyName}.");
-        }
-    }
-
+	}
 }
