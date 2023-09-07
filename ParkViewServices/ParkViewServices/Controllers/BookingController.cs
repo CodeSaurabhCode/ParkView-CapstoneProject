@@ -95,8 +95,9 @@ namespace ParkViewServices.Controllers
         {
             var availableRoomCount = _unitOfWork.RoomCount.GetAll(u => u.HotelID == HotelId, includeProperties: "Hotel,RoomType");
             var bookings = HttpContext.Session.GetObject<Booking>("bookings");
-
+            var roomImages = _unitOfWork.RoomImages.GetAll(includeProperties: "RoomType");
             var items = _bookingCart.GetBookingCartRooms();
+            var cityId = HttpContext.Session.GetObject<int>("CityId");
             if (items != null)
             {
                 List<Room> itemsIncludingRoomType = new List<Room>();
@@ -131,7 +132,10 @@ namespace ParkViewServices.Controllers
                     booking = bookings,
                     roomCounts = availableRoomCount,
                     HotelId = HotelId,
-                    bookedRooms = itemsIncludingRoomType
+                    bookedRooms = itemsIncludingRoomType,
+                    roomImages = roomImages,
+                    CityId = cityId
+
                 };
 
                 return View(selectView1);
@@ -142,6 +146,7 @@ namespace ParkViewServices.Controllers
                 booking = bookings,
                 roomCounts = availableRoomCount,
                 HotelId = HotelId,
+                roomImages = roomImages
             };
             return View(selectView);
         }
