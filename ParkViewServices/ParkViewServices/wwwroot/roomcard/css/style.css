@@ -401,17 +401,17 @@
     transition: .5s;
 }
 
-.team-item:hover {
-    border-color: var(--secondary) !important;
-}
+    /*.team-item:hover {
+        border-color: var(--primary) !important;
+    }
 
-.team-item:hover .bg-primary {
-    background: var(--secondary) !important;
-}
+        .team-item:hover .bg-primary {
+            background: var(--primary) !important;
+        }
 
-.team-item:hover .bg-primary i {
-    color: var(--secondary) !important;
-}
+            .team-item:hover .bg-primary i {
+                color: var(--primary) !important;
+            }*/
 
 
 /*** Footer ***/
