@@ -335,7 +335,7 @@ p {
           padding:inherit;
       }
 
-      .container-fluid{
+      .cnt-fluid{
           padding:7px 0px 7px 70px;
       }
       
@@ -353,7 +353,7 @@ p {
     
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-black box-shadow">
-            <div class="container-fluid" >
+            <div class="container-fluid cnt-fluid" >
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index"><img src="~/images/logo/white-stripped.png" height="40"  /></a>
               
                 <div class="navbar-collapse @*collapse d-sm-inline-flex justify-content-between*@">
@@ -363,6 +363,9 @@ p {
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Destinations">Destinations</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-light" asp-area="" asp-controller="Booking" asp-action="Index">Book</a>

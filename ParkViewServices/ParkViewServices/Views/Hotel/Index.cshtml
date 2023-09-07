@@ -124,7 +124,7 @@
     }
 
 
-    section {
+    .sec {
         width: 80%;
         margin: 0 auto;
         line-height: 0;
@@ -134,11 +134,11 @@
         background-color: rgba(0,0,0,0);
     }
 
-     section img {
+     .sec img {
             width: 100%;
         }
 
-        section article {
+        .sec article {
             position: absolute;
             top: 0;
             width: 100%;
@@ -149,12 +149,12 @@
             mix-blend-mode: lighten;
         }
 
-        section div {
+        .sec .division {
             background: black;
-            height: 15.3vw;
+            
         }
 
-            section div:nth-of-type(2) {
+            .sec .division:nth-of-type(2) {
                 grid-column: 0.5;
             }
 
@@ -191,14 +191,16 @@
 
 <div class="detailsDiv">
     <div class="DetailsDivs-left">
-        <section >
+        <section class="sec">
             <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/4273/portrait.jpg" alt="">
             <article>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
+                <div class="divison"></div>
+                <div class="divison"></div>
+                <div class="divison"></div>
+                <div class="divison"></div>
+                <div class="divison"></div>
+                <div class="divison"></div>
+                
             </article>
         </section>
     </div>
@@ -226,7 +228,7 @@
 </div>
 <div class="container-xxl py-5">
     <div class="container">
-        <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+        <div class="text-center wow fadeInUp" style="padding-top:30px;" data-wow-delay="0.1s">
             <h6 class="section-title text-center text-primary1 text-uppercase">Our Rooms</h6>
             <h1 class="mb-5">Explore Our <span class="text-primary1 text-uppercase">Rooms</span></h1>
         </div>
@@ -240,10 +242,56 @@
     </div>
 </div>
 
+<div class="text-center wow fadeInUp" style="padding-top:30px;" data-wow-delay="0.1s">
+    <h6 class="section-title text-center text-primary1 text-uppercase">Our Services</h6>
+    <h1 class="mb-5">Explore Our <span class="text-primary1 text-uppercase">Services</span></h1>
+</div>
 
-
-
-
-
-
-
+<section >
+    <!--START:Packages-->
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-4  col-sm-12">
+                <div class="ih-item square effect13">
+                    <a href="bali.html">
+                        <div class="img">
+                            <img class="img-fluid" src="~/images/services/spa.jpg" alt="...">
+                        </div>
+                        <div class="info">
+                            <h3>SPA</h3>
+                            <p>Discover deeply personalised treatments, unique retreats, and curated fitness and wellness programmes at our extraordinarily luxurious, award-winning spas.Traditionally, hotel spas offer massage services, saunas, hot tubs, manicures, pedicures, haircuts and styling, hair coloring, facials, waxing, body scrubs, body wraps, and men's facial shaving. Hotel spas usually have a menu of services and prices for each of their services.</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-4  col-sm-12 ">
+                <div class="ih-item square effect13">
+                    <a href="goa.html">
+                        <div class="img">
+                            <img class="img-fluid" src="~/images/services/restaurant.jpg" alt="...">
+                        </div>
+                        <div class="info">
+                            <h3>DINE-IN</h3>
+                            <p>
+                                Culinary excellence has long been part of the Mandarin Oriental experience. From fine dining to relaxed bistros, our innovative dining destinations will treat you to some of the most extraordinary flavors in the world.Room service or in-room dining is a hotel service enabling guests to choose items of food and drink for delivery to their hotel room for consumption. Room service is organized as a subdivision within the food and beverage department of high-end hotel and resort properties.
+                            </p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-4  col-sm-12 ">
+                <div class="ih-item square effect13">
+                    <a href="maldives.html">
+                        <div class="img">
+                            <img class="img-fluid" src="~/images/services/meet.jpg" alt="...">
+                        </div>
+                        <div class="info">
+                            <h3>MEET</h3>
+                            <p>At ParkView, we make every occasion special. With almost 60 years of experience creating bespoke meetings, we can guarantee excellence and success.From elegant ballrooms to stately meeting rooms, our inspiring venues provide the perfect backdrop for your occasion. To discover a wide variety of spaces, along with their floor plans, capacities and factsheets for every venue please see below link. ​</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section><!--END:Packages-->
