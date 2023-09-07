@@ -8,7 +8,9 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using ParkViewServices.Models.Bookings;
 
 namespace ParkViewServices.Areas.Identity.Pages.Account
 {
@@ -16,6 +18,7 @@ namespace ParkViewServices.Areas.Identity.Pages.Account
     {
         private readonly SignInManager<IdentityUser> _signInManager;
         private readonly ILogger<LogoutModel> _logger;
+        
 
         public LogoutModel(SignInManager<IdentityUser> signInManager, ILogger<LogoutModel> logger)
         {
@@ -24,9 +27,13 @@ namespace ParkViewServices.Areas.Identity.Pages.Account
         }
 
         public async Task<IActionResult> OnPost(string returnUrl = null)
-        {
+		{
             await _signInManager.SignOutAsync();
-            _logger.LogInformation("User logged out.");
+			//ISession session = _serviceProvider.GetRequiredService<IHttpContextAccessor>().HttpContext.Session;
+			//_bookingCart.Items = new List<BookingCartRoom>();
+			//session.Clear();
+			HttpContext.Session.Clear();
+			_logger.LogInformation("User logged out.");
             if (returnUrl != null)
             {
                 return LocalRedirect(returnUrl);

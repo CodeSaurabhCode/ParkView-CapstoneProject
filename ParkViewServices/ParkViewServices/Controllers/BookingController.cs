@@ -19,14 +19,12 @@ namespace ParkViewServices.Controllers
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly BookingCart _bookingCart;
-       
-      
+        
 
         public BookingController(IUnitOfWork unitOfWork, BookingCart bookingCart)
         {
             _unitOfWork = unitOfWork;
             _bookingCart = bookingCart;
-             
         }
         
         [Route("[Controller]")]
@@ -189,13 +187,14 @@ namespace ParkViewServices.Controllers
             var bookings = HttpContext.Session.GetObject<Booking>("bookings");
             var totalnights = DateCalculator.CalculateNightsBetweenDates(bookings.CheckInDate, bookings.CheckOutDate);
 
-            
+            var hotelImages = _unitOfWork.HotelSingleImage.Get( u=> u.HotelId == HotelId ,includeProperties:"Hotel");
             
             ReviewBookingViewModel viewModel = new ReviewBookingViewModel()
             {
                 Hotel = hotel,
                 Booking = bookings,
                 TotalNights = totalnights,
+                Images = hotelImages
                
             };
             return View(viewModel);
@@ -253,7 +252,8 @@ namespace ParkViewServices.Controllers
 
             _unitOfWork.Booking.Add(bookings);
             _unitOfWork.Save();
-            return View("PaymentSuccess", bookings);
+			HttpContext.Session.Clear();
+			return View("PaymentSuccess", bookings);
         }
 
     }

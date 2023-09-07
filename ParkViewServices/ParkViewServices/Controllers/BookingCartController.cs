@@ -12,6 +12,7 @@ namespace ParkViewServices.Controllers
     {
         private readonly BookingCart _bookingCart;
         private readonly IUnitOfWork _unitOfWork;
+        private readonly IServiceProvider _serviceProvider;
 
         public BookingCartController(BookingCart bookingCart, IUnitOfWork unitOfWork)
         {
@@ -96,6 +97,14 @@ namespace ParkViewServices.Controllers
 
         }
 
-        
-    }
+		public RedirectToActionResult ClearCart()
+		{
+			ISession session = _serviceProvider.GetRequiredService<IHttpContextAccessor>().HttpContext.Session;
+			_bookingCart.Items = new List<BookingCartRoom>();
+			session.Clear();
+			return RedirectToAction("Index");
+		}
+
+
+	}
 }
