@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ParkViewServices.Models;
 using ParkViewServices.Models.Bookings;
+using ParkViewServices.Models.Rooms;
 using ParkViewServices.Repositories.Interfaces;
+using ParkViewServices.ViewModel;
 using System.Diagnostics;
 
 namespace ParkViewServices.Controllers
@@ -17,10 +19,25 @@ namespace ParkViewServices.Controllers
 
         public IActionResult Index()
         { 
-            Booking booking = new Booking();    
-            var hotels = _unitOfWork.Hotel.GetAll(includeProperties : "City");
+            var bookings = _unitOfWork.Booking.GetAll(u => u.CheckOutDate.Date == DateTime.UtcNow.Date );
+    
+
+            return View();
+        }
+
+        public IActionResult Explore()
+        {
+            var hotels = _unitOfWork.Hotel.GetAll(includeProperties: "City");
             var cities = _unitOfWork.City.GetAll();
-            return View(booking);
+            var images = _unitOfWork.HotelSingleImage.GetAll();
+
+            CityHotelsViewModel cityHotels = new CityHotelsViewModel() 
+            { 
+                ViewCities = cities,
+                ViewHotels = hotels,
+                ViewHotelImages = images
+            };
+            return View(cityHotels);
         }
 
         public IActionResult Privacy(int id)

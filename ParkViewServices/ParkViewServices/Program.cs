@@ -8,7 +8,6 @@ using ParkViewServices.Models;
 using ParkViewServices.Models.Bookings;
 using ParkViewServices.Repositories;
 using ParkViewServices.Repositories.Interfaces;
-using SendGrid.Helpers.Mail;
 using System.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -32,7 +31,12 @@ builder.Services.AddScoped<IEmailSender, EmailSender>();
 builder.Services.AddScoped<BookingCart>(sp => BookingCart.GetCart(sp));
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddSession();
-
+builder.Services.AddAuthentication().AddGoogle(
+    GoogleOptions =>
+    {
+        GoogleOptions.ClientId = builder.Configuration["Authentication:Google:ClientId"];
+        GoogleOptions.ClientSecret = builder.Configuration["Authentication:Google:ClientSecret"];
+    });
 builder.Services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Latest)
    .AddRazorPagesOptions(options =>
 {

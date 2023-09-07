@@ -3,15 +3,25 @@
   "defaultProvider": "cdnjs",
   "libraries": [
     {
+      "library": "bootstrap@5.3.1",
+      "destination": "wwwroot/lib/bootstrap/"
+    },
+    {
+      "library": "popper.js@1.16.1",
+      "destination": "wwwroot/lib/popper.js/"
+    },
+    {
+      "library": "font-awesome@5.15.4",
+      "destination": "wwwroot/lib/font-awesome/"
+    },
+    {
+      "library": "bootstrap-icons@1.10.5",
+      "destination": "wwwroot/lib/bootstrap-icons/"
+    },
+    {
       "provider": "cdnjs",
-      "library": "fontawesome-iconpicker@3.2.0",
-      "destination": "wwwroot/lib/fontawesome-iconpicker/"
+      "library": "qrcodejs@1.0.0",
+      "destination": "wwwroot/lib/qrcodejs/"
     }
-  ,
-{
-  "provider": "cdnjs",
-  "library": "fontawesome-iconpicker@3.2.0",
-  "destination": "wwwroot/lib/fontawesome-iconpicker/"
-}
-]
+  ]
 }

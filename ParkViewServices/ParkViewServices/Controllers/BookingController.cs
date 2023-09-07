@@ -33,7 +33,13 @@ namespace ParkViewServices.Controllers
         public IActionResult Index()
         {
             var cities = _unitOfWork.City.GetAll(includeProperties:"Country");
-            return View(cities);
+            var images = _unitOfWork.CityImage.GetAll(includeProperties: "City");
+            CityImagesViewModels viewModels = new CityImagesViewModels() 
+            { 
+                Cities = cities,
+                Images = images
+            };
+            return View(viewModels);
         }
 
         [HttpGet]
@@ -81,7 +87,7 @@ namespace ParkViewServices.Controllers
 
             cityId = HttpContext.Session.GetObject<int>("CityId");
             var hotels = _unitOfWork.Hotel.GetAll(u => u.CityId == cityId, includeProperties: "City");
-            viewModel.Hotels = new SelectList(hotels, "Id", "Name");
+            viewModel.Hotels = new SelectList(hotels, "Id", "Name");    
 
             return View(viewModel);
 
@@ -246,6 +252,7 @@ namespace ParkViewServices.Controllers
             bookings.TransactionId = razorpay_payment_id;
 
             _unitOfWork.Booking.Add(bookings);
+            _unitOfWork.Save();
             return View("PaymentSuccess", bookings);
         }
 

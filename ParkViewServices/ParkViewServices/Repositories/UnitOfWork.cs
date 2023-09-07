@@ -16,6 +16,9 @@ namespace ParkViewServices.Repositories
         public IBookingRepository Booking { get; private set; }
         //public IBookingCartRoom bookingCartRooms { get; private set; }
         public IApplicationUserRepository ApplicationUser { get; private set; }
+        public IHotelSingleImageRepository HotelSingleImage { get; private set; }
+        public ICityImageRepository CityImage { get; private set; }
+        public IBookedListRepository BookedList { get; private set; }   
         public UnitOfWork(ApplicationDbContext db)
         {
             _db = db;
@@ -28,6 +31,9 @@ namespace ParkViewServices.Repositories
             HotelImages = new HotelImagesRepository(_db);
             Booking = new BookingRepository(_db);
             ApplicationUser = new ApplicationUserRepository(_db);
+            HotelSingleImage = new HotelSingleImageRepository(_db);
+            CityImage = new CityImageRepository(_db);
+            BookedList = new BookedListRepository(_db);
             //bookingCartRooms = new BookCartRoomRepository(_db);
         }
 

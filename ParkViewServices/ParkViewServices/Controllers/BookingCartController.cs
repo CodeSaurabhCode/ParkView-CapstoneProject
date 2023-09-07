@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using ParkViewServices.Helpers;
 using ParkViewServices.Models.Bookings;
 using ParkViewServices.Models.Rooms;
 using ParkViewServices.Repositories.Interfaces;
@@ -31,7 +33,36 @@ namespace ParkViewServices.Controllers
         [Route("[Controller]/[action]/{RoomTypeId:int}/{HotelId:int}")]
         public IActionResult AddToCart(int RoomTypeId, int HotelId)
         {
-            var selectedRoom = _unitOfWork.Room.GetAll(u => u.HotelId == HotelId && u.RoomTypeId == RoomTypeId && u.Status == false, includeProperties: "RoomType").FirstOrDefault();
+            //var booking = HttpContext.Session.GetObject<Booking>("bookings");
+
+            //var bookedRooms = _unitOfWork.BookedList.GetAll();
+
+            //if (bookedRooms.Any())
+            //{
+            //    foreach (var bookedroom in bookedRooms)
+            //    { 
+                    
+            //        var booking = _unitOfWork.Booking.Get(x => x.BookedListId == bookedroom.Id);
+
+            //        foreach (var item in bookedroom.bookedRooms)
+            //        {
+                        
+            //            Room room = _unitOfWork.Room.Get(x => x.Id == item.Id);
+            //        }
+
+            //        if (booking != null)
+            //        {
+            //            if ((booking.CheckOutDate >= form.check_in && booking.CheckInDate <= form.check_in) || (booking.CheckInDate <= form.check_out && booking.CheckOutDate >= form.check_out))
+            //            {
+            //                rooms.Remove(room);
+            //            }
+            //        }
+            //    }
+
+
+
+
+                var selectedRoom = _unitOfWork.Room.GetAll(u => u.HotelId == HotelId && u.RoomTypeId == RoomTypeId && u.Status == false, includeProperties: "RoomType").FirstOrDefault();
             if (selectedRoom != null)
             {
                 _bookingCart.AddToCart(selectedRoom);

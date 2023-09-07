@@ -198,7 +198,7 @@ namespace ParkViewServices.Areas.Identity.Pages.Account
                     Credentials = new NetworkCredential("noreplyparkview@gmail.com", "Park@1005"), // Use your App Password here
                     EnableSsl = true,
                 };
-
+                    
                 var mailMessage = new MailMessage
                 {
                     From = new MailAddress("noreplyparkview@gmail.com"),
