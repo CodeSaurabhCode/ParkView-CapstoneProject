@@ -386,7 +386,7 @@
 
                                 <div class="cartsubheadingPrice">
 
-                                    <span>Rs</span>25,000
+                                    <span>Rs</span>@Model.TotalAmount
 
                                 </div>
 
@@ -400,13 +400,13 @@
 
                         <div class="subpart-1">
 
-                            <div class="cartsubheading">Price</div>
+                            <div class="cartsubheading">GST</div>
 
 
 
                             <div class="cartsubheadingPrice">
 
-                                <span>Rs</span>25,000
+                                <span>Rs</span>@Model.GSTAmount
 
                             </div>
 
@@ -430,7 +430,7 @@
 
                                 <div class="cartsubheadingPrice">
 
-                                    <span>Rs</span>25,000
+                                    <span>Rs</span>@Model.Booking.TotalAmount
 
                                 </div>
 
@@ -462,9 +462,8 @@
 
             </div>
 
+            <a asp-action="initiatebooking" class="btn btn-primary">Confirm</a>
 
- 
-            
 
         </div>
 

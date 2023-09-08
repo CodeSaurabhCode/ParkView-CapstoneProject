@@ -191,6 +191,11 @@ namespace ParkViewServices.Controllers
             var hotel = _unitOfWork.Hotel.Get(u=> u.Id == HotelId, includeProperties:"City");
             var bookings = HttpContext.Session.GetObject<Booking>("bookings");
             var totalnights = DateCalculator.CalculateNightsBetweenDates(bookings.CheckInDate, bookings.CheckOutDate);
+            var totalAmount = bookings.TotalAmount;
+            //var GSTAmount =   totalAmount;
+            var GSTAmount = totalAmount * (decimal) 0.18;
+            bookings.TotalAmount = totalAmount + GSTAmount;
+            HttpContext.Session.SetObject("bookings", bookings);
 
             var hotelImages = _unitOfWork.HotelSingleImage.Get( u=> u.HotelId == HotelId ,includeProperties:"Hotel");
             
@@ -199,8 +204,9 @@ namespace ParkViewServices.Controllers
                 Hotel = hotel,
                 Booking = bookings,
                 TotalNights = totalnights,
-                Images = hotelImages
-               
+                Images = hotelImages,
+                TotalAmount = totalAmount,
+                GSTAmount = GSTAmount,
             };
             return View(viewModel);
         }
@@ -226,7 +232,8 @@ namespace ParkViewServices.Controllers
             input.Add("currency", "INR");
             input.Add("receipt", transactionId);
 
-
+            
+            
             RazorpayClient client = new RazorpayClient(key, secret);
 
             Razorpay.Api.Order order = client.Order.Create(input);
@@ -241,6 +248,8 @@ namespace ParkViewServices.Controllers
 
             return View("Payment", viewModel);
         }
+
+        [Authorize]
 
         public IActionResult Payment(string razorpay_payment_id, string razorpay_order_id, string razorpay_signature)
         {
@@ -258,7 +267,13 @@ namespace ParkViewServices.Controllers
             _unitOfWork.Booking.Add(bookings);
             _unitOfWork.Save();
 			HttpContext.Session.Clear();
-			return View("PaymentSuccess", bookings);
+
+            var claimIdentity = (ClaimsIdentity)User.Identity;
+            var userId = claimIdentity.FindFirst(ClaimTypes.NameIdentifier).Value;
+
+            var user = _unitOfWork.ApplicationUser.Get(u => u.Id == userId);
+            bookings = _unitOfWork.Booking.Get(u => u.UserEmail == user.Email, includeProperties:"BookedList");
+			return View("MyBookings", bookings);
         }
 
     }
